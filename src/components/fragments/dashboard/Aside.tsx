@@ -1,5 +1,5 @@
 import React from 'react'
-import AsideLink from '../elements/AsideLink'
+import AsideLink from '../../elements/dashboard/AsideLink'
 
 export default function Aside() {
   return (

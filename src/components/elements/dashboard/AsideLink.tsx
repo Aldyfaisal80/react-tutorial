@@ -1,9 +1,5 @@
-import React from 'react'
+import { AsidelinkProps } from '../../../types/dashboard/propsType'
 
-type AsidelinkProps = {
-    children: React.ReactNode
-    href: string
-}
 export default function AsideLink({ children, href }: AsidelinkProps) {
     return (
         <a aria-current="page" className="active" href={href}>

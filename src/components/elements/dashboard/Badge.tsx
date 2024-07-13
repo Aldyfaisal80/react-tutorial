@@ -1,9 +1,4 @@
-import React from 'react'
-
-type BadgeProps = {
-    children: React.ReactNode
-    className?: string
-}
+import { BadgeProps, BadgeIconProps, BadgeTitleProps, BadgeDescriptionProps } from "../../../types/dashboard/propsType"
 
 const Badge = ({ children, className }: BadgeProps) => {
     return (
@@ -13,7 +8,7 @@ const Badge = ({ children, className }: BadgeProps) => {
     )
 }
 
-const Title = ({ title, value, className }: { title: string, value: string, className?: string }) => {
+const Title = ({ title, value, className }: BadgeTitleProps) => {
     return (
         <div className={`p-4 text-right ${className}`}>
             <p className="block antialiased font-sans text-sm leading-normal font-normal text-blue-gray-600">{title}</p>
@@ -22,7 +17,7 @@ const Title = ({ title, value, className }: { title: string, value: string, clas
     )
 }
 
-const Icon = ({ icon, className }: { icon: React.ReactNode, className?: string }) => {
+const Icon = ({ icon, className }: BadgeIconProps) => {
     return (
         <div className={`bg-clip-border mx-4 rounded-xl overflow-hidden bg-gradient-to-tr shadow-lg absolute -mt-4 grid h-16 w-16 place-items-center ${className}`}>
             {icon}
@@ -30,7 +25,7 @@ const Icon = ({ icon, className }: { icon: React.ReactNode, className?: string }
     )
 }
 
-const Description = ({ percentage, period, className }: { percentage: number, period: string, className?: string }) => {
+const Description = ({ percentage, period, className }: BadgeDescriptionProps) => {
     return (
         <div className={`border-t border-blue-gray-50 p-4 ${className}`}>
             <p className="block antialiased font-sans text-base leading-relaxed font-normal text-blue-gray-600">
