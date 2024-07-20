@@ -4,3 +4,19 @@
 
 /* @import url("https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap"); */
 
+.emoji-404 {
+  position: relative;
+  animation: mymove 2.5s infinite;
+}
+
+@keyframes mymove {
+  33% {
+    top: 0px;
+  }
+  66% {
+    top: 20px;
+  }
+  100% {
+    top: 0px;
+  }
+}

@@ -1,18 +1,10 @@
 import TableLayout from "../../../components/fragments/dashboard/TableLayout"
 import { useState, useEffect } from 'react'
 import TableProductSkaleton from "../../../components/elements/TableProductSkaleton"
-type Product = {
-  id: number,
-  title: string,
-  price: number,
-  description: string,
-  category: string,
-  image: string,
-  rating: { rate: number, count: number }
-}
+import { ProductType } from "../../../types/dashboard/propsType"
 
 export default function ProductPage() {
-  const [products, setProducts] = useState<Product[]>()
+  const [products, setProducts] = useState<ProductType[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
@@ -30,7 +22,7 @@ export default function ProductPage() {
   }, []);
 
   const renderElement = () => {
-    return products?.map((product: Product, index: number) => {
+    return products?.map((product: ProductType, index: number) => {
       return <tr key={index}>
         <td className="py-3 px-5 border-b border-blue-gray-50">
           <div className="flex items-center gap-4">
