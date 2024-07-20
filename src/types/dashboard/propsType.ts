@@ -1,6 +1,7 @@
 export type AsidelinkProps = {
     children: React.ReactNode
     href: string
+    className?: string
 }
 export type BadgeProps = {
     children: React.ReactNode
@@ -24,4 +25,10 @@ export type BadgeDescriptionProps = {
 
 export type DashboardMainLayoutProps = {
     children: React.ReactNode
+}
+
+export type TableNavLinkProps = {
+    children: React.ReactNode
+    href: string
+    className?: string
 }
