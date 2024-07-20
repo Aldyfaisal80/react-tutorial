@@ -13,17 +13,21 @@ import DashboardProfile from './pages/DashboardProfile';
 import DashboardTables from './pages/DashboardTables';
 import CustomerPage from './pages/sub-pages/Tables/CustomerPage';
 import ProductPage from './pages/sub-pages/Tables/ProductPage';
+import Home from './pages/Home';
 
 const routes: RouteObject[] = createRoutesFromElements(
-  <Route path="dashboard" element={<DashboardMainLayout />}>
-    <Route index element={<Dashboard />} />
-    <Route path="profile" element={<DashboardProfile />} />
-    <Route path="tables" element={<DashboardTables />}>
-      <Route index element={<Navigate to="products" />} />
-      <Route path="products" element={<ProductPage />} />
-      <Route path="customers" element={<CustomerPage />} />
+  <Route path='/' >
+    <Route index element={<Home />}/>
+    <Route path="dashboard" element={<DashboardMainLayout />}>
+      <Route index element={<Dashboard />} />
+      <Route path="profile" element={<DashboardProfile />} />
+      <Route path="tables" element={<DashboardTables />}>
+        <Route index element={<Navigate to="products" />} />
+        <Route path="products" element={<ProductPage />} />
+        <Route path="customers" element={<CustomerPage />} />
+      </Route>
+      <Route path="notifactions" element={<DashboardNotifactions />} />
     </Route>
-    <Route path="notifactions" element={<DashboardNotifactions />} />
   </Route>
 );
 
