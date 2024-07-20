@@ -13,15 +13,21 @@ type Product = {
 
 export default function ProductPage() {
   const [products, setProducts] = useState<Product[]>()
-  const [isLoading, setIsLoading] = useState<boolean>()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     fetch('https://fakestoreapi.com/products?limit=5')
       .then(response => response.json())
-      .then(data => setProducts(data))
-    setIsLoading(false)
-  }, [])
+      .then(data => {
+        setProducts(data);
+        setIsLoading(false);
+      })
+      .catch(error => {
+        console.error('Error fetching products:', error);
+        setIsLoading(false);
+      });
+  }, []);
 
   const renderElement = () => {
     return products?.map((product: Product, index: number) => {
