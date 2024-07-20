@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Navbar() {
   return (
     <nav className="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">

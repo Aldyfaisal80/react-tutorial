@@ -1,4 +1,3 @@
-import React from 'react'
 import TableNav from '../../fragments/dashboard/TableNav'
 
 type TableLayoutProps = {
@@ -9,7 +8,7 @@ export default function DashboardTableLayout({ children }: TableLayoutProps) {
     return (
         <>
             <TableNav />
-            <div className='p-5 border mt-2'>
+            <div className='p-5 mt-2'>
                 {children}
             </div>
         </>

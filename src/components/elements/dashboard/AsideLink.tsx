@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 export default function AsideLink({ children, href, className }: AsidelinkProps) {
     const pathname = useLocation().pathname;
-    const isActive = pathname === href;
+    const isActive = href !== "/dashboard" ? pathname.startsWith(href) : pathname === href
     const activeLink = "shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/40 active:opacity-[0.85] bg-gradient-to-tr from-blue-600 to-blue-400";
     const inactiveLink = "hover:bg-white/10 active:bg-white/30";
     return (

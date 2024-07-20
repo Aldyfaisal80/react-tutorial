@@ -1,4 +1,3 @@
-import DashboardMainLayout from '../components/layouts/dashboard/DashboardMainLayout'
 import Gufron from "../../public/assets/images/Abuya-Mama-Ghufron-1951961959.webp"
 import styled from 'styled-components'
 export default function DashboardProfile() {
@@ -10,11 +9,11 @@ export default function DashboardProfile() {
   `
 
   return (
-    <DashboardMainLayout>
+    <>
       <Judul>
         DashboardProfile
       </Judul>
       <img src={Gufron} alt="" />
-    </DashboardMainLayout>
+    </>
   )
 }
