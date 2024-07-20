@@ -1,6 +1,5 @@
 import TableLayout from "../../../components/fragments/dashboard/TableLayout"
 import { useState, useEffect } from 'react'
-import Spinner from '../../../components/elements/Spinner'
 import TableProductSkaleton from "../../../components/elements/TableProductSkaleton"
 type Product = {
   id: number,
