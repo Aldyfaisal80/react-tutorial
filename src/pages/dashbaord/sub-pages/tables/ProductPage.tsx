@@ -1,26 +1,11 @@
 import TableLayout from "../../../../components/fragments/dashboard/TableLayout"
-import { useState, useEffect } from 'react'
 import TableProductSkaleton from "../../../../components/elements/TableProductSkaleton"
 import { ProductType } from "../../../../types/dashboard/propsType"
 import { Link } from "react-router-dom"
+import { useProducts } from "../../../../features/product"
 
 export default function ProductPage() {
-  const [products, setProducts] = useState<ProductType[]>()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch('https://fakestoreapi.com/products?limit=5')
-      .then(response => response.json())
-      .then(data => {
-        setProducts(data);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching products:', error);
-        setIsLoading(false);
-      });
-  }, []);
+  const {products, loading} = useProducts()
 
   const renderElement = () => {
     return products?.map((product: ProductType, index: number) => {
@@ -31,7 +16,7 @@ export default function ProductPage() {
           </div>
         </td>
         <td className="py-3 px-5 border-b border-blue-gray-50">
-          <Link to={`/dashboard/tables/products/${product.id}`}>
+          <Link to={`/dashboard/tables/products/${product.id}`} className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
             Detail
           </Link>
         </td>
@@ -53,7 +38,7 @@ export default function ProductPage() {
           </tr>
         </thead>
         <tbody>
-          {!isLoading ? renderElement() : <TableProductSkaleton />}
+          {!loading ? renderElement() : <TableProductSkaleton />}
         </tbody>
       </table>
     </TableLayout>

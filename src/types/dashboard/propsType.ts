@@ -47,7 +47,7 @@ export type ProductType = {
     rating: { rate: number, count: number }
 }
 
-export type CustomerType = {
+export type UserType = {
     address: {
         geolocation: { lat: string, long: string },
         city: string,
@@ -63,3 +63,10 @@ export type CustomerType = {
     phone: string,
     __v: number
 }
+
+
+// Error Handler
+
+export type ErrorType = {
+    message: string;
+};

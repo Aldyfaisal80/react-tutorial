@@ -1,47 +1,31 @@
 import TableLayout from "../../../../components/fragments/dashboard/TableLayout"
-import { useState, useEffect } from 'react'
 import TableProductSkaleton from "../../../../components/elements/TableProductSkaleton"
-import { CustomerType } from "../../../../types/dashboard/propsType"
-
-
+import { UserType } from "../../../../types/dashboard/propsType"
+import { useUsers } from "../../../../features/user"
+import { Link } from "react-router-dom"
 
 export default function CustomerPage() {
-  const [customers, setCustomers] = useState<CustomerType[]>()
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetch('https://fakestoreapi.com/users')
-      .then(response => response.json())
-      .then(data => {
-        setCustomers(data);
-        setIsLoading(false);
-      })
-      .catch(error => {
-        console.error('Error fetching customers:', error);
-        setIsLoading(false);
-      });
-  }, []);
+  const { users, loading } = useUsers()
 
   const renderElement = () => {
-    return customers?.map((customer: CustomerType, index: number) => {
+    return users?.map((user: UserType, index: number) => {
       return <tr key={index}>
         <td className="py-3 px-5 border-b border-blue-gray-50">
           <div className="flex items-center gap-4">
-            <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 capitalize">{customer.name.firstname + ' ' + customer.name.lastname}</p>
+            <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 capitalize">{user.name.firstname + ' ' + user.name.lastname}</p>
           </div>
         </td>
         <td className="py-3 px-5 border-b border-blue-gray-50">
-          <button>
+          <Link to={`/dashboard/tables/customer/${user.id}`} className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
             Detail
-          </button>
+          </Link>
         </td>
       </tr>
     })
   }
 
   return (
-    <TableLayout title="customers" count={customers?.length}>
+    <TableLayout title="users" count={users?.length}>
       <table className="w-full min-w-[640px] table-auto">
         <thead>
           <tr>
@@ -54,7 +38,7 @@ export default function CustomerPage() {
           </tr>
         </thead>
         <tbody>
-          {!isLoading ? renderElement() : <TableProductSkaleton />}
+          {!loading ? renderElement() : <TableProductSkaleton />}
         </tbody>
       </table>
     </TableLayout>
