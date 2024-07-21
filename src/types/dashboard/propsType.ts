@@ -1,3 +1,5 @@
+// Props Type
+
 export type AsidelinkProps = {
     children: React.ReactNode
     href: string
@@ -8,19 +10,19 @@ export type BadgeProps = {
     className?: string
 }
 
-export type BadgeIconProps = { 
-    icon: React.ReactNode, 
-    className?: string 
+export type BadgeIconProps = {
+    icon: React.ReactNode,
+    className?: string
 }
-export type BadgeTitleProps = { 
-    title: string, 
-    value: string, 
-    className?: string 
+export type BadgeTitleProps = {
+    title: string,
+    value: string,
+    className?: string
 }
-export type BadgeDescriptionProps = { 
-    percentage: number, 
-    period: string, 
-    className?: string 
+export type BadgeDescriptionProps = {
+    percentage: number,
+    period: string,
+    className?: string
 }
 
 export type DashboardMainLayoutProps = {
@@ -33,6 +35,8 @@ export type TableNavLinkProps = {
     className?: string
 }
 
+// Model Type
+
 export type ProductType = {
     id: number,
     title: string,
@@ -41,4 +45,21 @@ export type ProductType = {
     category: string,
     image: string,
     rating: { rate: number, count: number }
-  }
+}
+
+export type CustomerType = {
+    address: {
+        geolocation: { lat: string, long: string },
+        city: string,
+        street: string,
+        number: number,
+        zipcode: string
+    },
+    id: number,
+    email: string,
+    username: string,
+    password: string,
+    name: { firstname: string, lastname: string },
+    phone: string,
+    __v: number
+}

@@ -1,32 +1,34 @@
-import TableLayout from "../../../components/fragments/dashboard/TableLayout"
+import TableLayout from "../../../../components/fragments/dashboard/TableLayout"
 import { useState, useEffect } from 'react'
-import TableProductSkaleton from "../../../components/elements/TableProductSkaleton"
-import { ProductType } from "../../../types/dashboard/propsType"
+import TableProductSkaleton from "../../../../components/elements/TableProductSkaleton"
+import { CustomerType } from "../../../../types/dashboard/propsType"
 
-export default function ProductPage() {
-  const [products, setProducts] = useState<ProductType[]>()
+
+
+export default function CustomerPage() {
+  const [customers, setCustomers] = useState<CustomerType[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://fakestoreapi.com/products?limit=5')
+    fetch('https://fakestoreapi.com/users')
       .then(response => response.json())
       .then(data => {
-        setProducts(data);
+        setCustomers(data);
         setIsLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching products:', error);
+        console.error('Error fetching customers:', error);
         setIsLoading(false);
       });
   }, []);
 
   const renderElement = () => {
-    return products?.map((product: ProductType, index: number) => {
+    return customers?.map((customer: CustomerType, index: number) => {
       return <tr key={index}>
         <td className="py-3 px-5 border-b border-blue-gray-50">
           <div className="flex items-center gap-4">
-            <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 capitalize">{product.title}</p>
+            <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 capitalize">{customer.name.firstname + ' ' + customer.name.lastname}</p>
           </div>
         </td>
         <td className="py-3 px-5 border-b border-blue-gray-50">
@@ -39,7 +41,7 @@ export default function ProductPage() {
   }
 
   return (
-    <TableLayout title="products" count={products?.length}>
+    <TableLayout title="customers" count={customers?.length}>
       <table className="w-full min-w-[640px] table-auto">
         <thead>
           <tr>

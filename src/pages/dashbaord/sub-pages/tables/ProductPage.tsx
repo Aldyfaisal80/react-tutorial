@@ -1,62 +1,46 @@
-import TableLayout from "../../../components/fragments/dashboard/TableLayout"
+import TableLayout from "../../../../components/fragments/dashboard/TableLayout"
 import { useState, useEffect } from 'react'
-import TableProductSkaleton from "../../../components/elements/TableProductSkaleton"
-// import { ProductType } from "../../../types/dashboard/propsType"
+import TableProductSkaleton from "../../../../components/elements/TableProductSkaleton"
+import { ProductType } from "../../../../types/dashboard/propsType"
+import { Link } from "react-router-dom"
 
-type CustomerType = {
-  address: {
-    geolocation: { lat: string, long: string },
-    city: string,
-    street: string,
-    number: number,
-    zipcode: string
-  },
-  id: number,
-  email: string,
-  username: string,
-  password: string,
-  name: { firstname: string, lastname: string },
-  phone: string,
-  __v: number
-}
-
-export default function CustomerPage() {
-  const [customers, setCustomers] = useState<CustomerType[]>()
+export default function ProductPage() {
+  const [products, setProducts] = useState<ProductType[]>()
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   useEffect(() => {
     setIsLoading(true);
-    fetch('https://fakestoreapi.com/users')
+    fetch('https://fakestoreapi.com/products?limit=5')
       .then(response => response.json())
       .then(data => {
-        setCustomers(data);
+        setProducts(data);
         setIsLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching customers:', error);
+        console.error('Error fetching products:', error);
         setIsLoading(false);
       });
   }, []);
 
   const renderElement = () => {
-    return customers?.map((customer: CustomerType, index: number) => {
+    return products?.map((product: ProductType, index: number) => {
       return <tr key={index}>
         <td className="py-3 px-5 border-b border-blue-gray-50">
           <div className="flex items-center gap-4">
-            <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 capitalize">{customer.name.firstname + ' ' + customer.name.lastname}</p>
+            <p className="block antialiased font-sans text-sm leading-normal text-blue-gray-900 capitalize">{product.title}</p>
           </div>
         </td>
         <td className="py-3 px-5 border-b border-blue-gray-50">
-          <button>
+          <Link to={`/dashboard/tables/products/${product.id}`}>
             Detail
-          </button>
+          </Link>
         </td>
       </tr>
     })
   }
 
   return (
-    <TableLayout title="customers" count={customers?.length}>
+    <TableLayout title="products" count={products?.length}>
       <table className="w-full min-w-[640px] table-auto">
         <thead>
           <tr>

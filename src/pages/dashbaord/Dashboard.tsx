@@ -1,7 +1,7 @@
-import Badge from "../components/elements/dashboard/Badge";
+import Badge from "../../components/elements/dashboard/Badge";
 import { FaMoneyBills, FaSignal, FaUser } from "react-icons/fa6";
 import { HiUserAdd } from "react-icons/hi";
-import TableLayout from "../components/fragments/dashboard/TableLayout";
+import TableLayout from "../../components/fragments/dashboard/TableLayout";
 export default function Dashboard() {
   return (
     <>

@@ -7,12 +7,14 @@ import {
   type RouteObject,
 } from 'react-router-dom';
 import DashboardMainLayout from './components/layouts/dashboard/DashboardMainLayout';
-import Dashboard from './pages/Dashboard';
-import DashboardNotifactions from './pages/DashboardNotifactions';
-import DashboardProfile from './pages/DashboardProfile';
-import DashboardTables from './pages/DashboardTables';
-import CustomerPage from './pages/sub-pages/Tables/CustomerPage';
-import ProductPage from './pages/sub-pages/Tables/ProductPage';
+import Dashboard from './pages/dashbaord/Dashboard';
+import DashboardNotifactions from './pages/dashbaord/DashboardNotifactions';
+import DashboardProfile from './pages/dashbaord/DashboardProfile';
+import DashboardTables from './pages/dashbaord/DashboardTables';
+import CustomerPage from './pages/dashbaord/sub-pages/tables/CustomerPage';
+import ProductPage from './pages/dashbaord/sub-pages/tables/ProductPage';
+import ProductDetail from "./pages/dashbaord/sub-pages/tables/detail/ProductDetail"
+import CustomerDetail from "./pages/dashbaord/sub-pages/tables/detail/CustomerDetail"
 import Home from './pages/Home';
 import ErrorPage from './404';
 
@@ -24,12 +26,10 @@ const routes: RouteObject[] = createRoutesFromElements(
       <Route path="profile" element={<DashboardProfile />} />
       <Route path="tables" element={<DashboardTables />}>
         <Route index element={<Navigate to="products" />} />
-        <Route path="products" element={<ProductPage />} >
-          <Route path=':id' element={<h1>Hello World Detail Product</h1>} />
-        </Route>
-        <Route path="customers" element={<CustomerPage />} >
-          <Route path=':id' element={<h1>Hello World Detail Customer</h1>} />
-        </Route>
+        <Route path="products" element={<ProductPage />} />
+        <Route path='products/:id' element={<ProductDetail />} />
+        <Route path="customers" element={<CustomerPage />} />
+        <Route path='customers/:id' element={<CustomerDetail />} />
       </Route>
       <Route path="notifactions" element={<DashboardNotifactions />} />
     </Route>
