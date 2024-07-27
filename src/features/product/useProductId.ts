@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { axiosInstance } from "../../lib/axios";
 import { ProductType } from "../../types/dashboard/propsType";
 
-export const useProductId = (id: number) => {
+export const useProductId = (id: string) => {
     const [data, setData] = useState<ProductType>()
     const [loading, setLoading] = useState<boolean>(true)
     const [error, setError] = useState<any>(true)   

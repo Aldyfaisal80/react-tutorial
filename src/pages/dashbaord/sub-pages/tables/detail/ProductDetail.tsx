@@ -2,8 +2,8 @@ import { useParams } from "react-router-dom"
 import DetailProductSkaleton from "../../../../../components/elements/DetailProductSkaleton"
 import { useProductId } from "../../../../../features/product"
 export default function ProductDetail() {
-    const productId = useParams().id
-    const { data: product, loading } = useProductId(productId)
+    const { id } = useParams<{ id: string }>()
+    const { data: product, loading } = useProductId(id ? id : "")
     const renderElement = () => {
         return (
             <div className="flex flex-col items-center bg-white rounded-lg md:flex-row p-5">
