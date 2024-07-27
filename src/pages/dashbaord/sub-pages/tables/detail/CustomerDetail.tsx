@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import { useUserId } from '../../../../../features/user'
 export default function CustomerDetail() {
     const { id } = useParams()
-    const { user } = useUserId(id)
+    const { data: user } = useUserId(id)
     const renderElement = () => {
         return (
             <div className="flex flex-col items-center bg-white rounded-lg md:flex-row p-5">

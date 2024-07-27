@@ -1,19 +1,30 @@
 import { useEffect, useState } from "react"
 import { UserType } from "../../types/dashboard/propsType"
+import { axiosInstance } from "../../lib/axios"
 
 export const useUserId = (id: number) => {
-    const [user, setUser] = useState<UserType>()
-    const fetchData = async () => {
-        try {
-            const response = await fetch(`https://fakestoreapi.com/users/${id}`)
-            const data = await response.json()
-            setUser(data)
-        } catch (error) {
-            console.log(error)
-        }
-    }
+    const [data, setData] = useState<UserType>()
+    const [loading, setLoading] = useState<boolean>(true)
+    const [error, setError] = useState<any>()
     useEffect(() => {
+        const fetchData = async () => {
+            setLoading(true)
+            try {
+                const response = await axiosInstance(`/users/${id}`)
+                if (response.status !== 200) {
+                    throw new Error('Failed to fetch User');
+                }
+                setData(response.data)
+            } catch (error) {
+                if (error) {
+                    setError(error)
+                }
+            } finally {
+                setLoading(false)
+            }
+        }
         fetchData()
-    }, [])
-    return { user }
+    }, [id])
+
+    return { data, loading, error }
 }

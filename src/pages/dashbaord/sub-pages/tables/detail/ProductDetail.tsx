@@ -1,24 +1,9 @@
-import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { ProductType } from "../../../../../types/dashboard/propsType"
 import DetailProductSkaleton from "../../../../../components/elements/DetailProductSkaleton"
+import { useProductId } from "../../../../../features/product"
 export default function ProductDetail() {
     const productId = useParams().id
-    const [product, setProduct] = useState<ProductType>()
-    const [isLoading, setIsLoading] = useState<boolean>(false)
-    useEffect(() => {
-        setIsLoading(true);
-        fetch(`https://fakestoreapi.com/products/${productId}`)
-            .then(response => response.json())
-            .then(data => {
-                setProduct(data);
-                setIsLoading(false);
-            })
-            .catch(error => {
-                console.error('Error fetching products:', error);
-                setIsLoading(false);
-            });
-    }, [productId]);
+    const { data: product, loading } = useProductId(productId)
     const renderElement = () => {
         return (
             <div className="flex flex-col items-center bg-white rounded-lg md:flex-row p-5">
@@ -54,7 +39,7 @@ export default function ProductDetail() {
     }
     return (
         <>
-            {!isLoading ? renderElement() : <DetailProductSkaleton />}
+            {!loading ? renderElement() : <DetailProductSkaleton />}
         </>
     )
 }

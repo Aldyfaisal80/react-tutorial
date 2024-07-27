@@ -5,7 +5,7 @@ import { useUsers } from "../../../../features/user"
 import { Link } from "react-router-dom"
 
 export default function CustomerPage() {
-  const { users, loading } = useUsers()
+  const { data: users, loading } = useUsers()
 
   const renderElement = () => {
     return users?.map((user: UserType, index: number) => {

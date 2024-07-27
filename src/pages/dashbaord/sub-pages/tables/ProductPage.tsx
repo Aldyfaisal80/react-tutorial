@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { useProducts } from "../../../../features/product"
 
 export default function ProductPage() {
-  const {products, loading} = useProducts()
+  const { data: products, loading } = useProducts()
 
   const renderElement = () => {
     return products?.map((product: ProductType, index: number) => {
