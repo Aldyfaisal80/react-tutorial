@@ -16,7 +16,7 @@ export default function CustomerPage() {
           </div>
         </td>
         <td className="py-3 px-5 border-b border-blue-gray-50">
-          <Link to={`/dashboard/tables/customer/${user.id}`} className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
+          <Link to={`/dashboard/tables/customers/${user.id}`} className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
             Detail
           </Link>
         </td>
