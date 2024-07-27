@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { UserType } from '../../types/dashboard/propsType';
 import { axiosInstance } from '../../lib/axios';
 
-export const useUsers = () => {
+export const useUsers = (limit: number) => {
     const [data, setData] = useState<UserType[]>();
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<any>();
@@ -10,7 +10,7 @@ export const useUsers = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const response = await axiosInstance('/users');
+                const response = await axiosInstance(`/users?limit=${limit}`);
                 if (response.status !== 200) {
                     throw new Error('Failed to fetch Users');
                 }
@@ -24,7 +24,7 @@ export const useUsers = () => {
             }
         };
         fetchUsers();
-    }, []);
+    }, [limit]);
 
     return { data, loading, error };
 };

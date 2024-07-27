@@ -3,10 +3,11 @@ import TableProductSkaleton from "../../../../components/elements/TableProductSk
 import { UserType } from "../../../../types/dashboard/propsType"
 import { useUsers } from "../../../../features/user"
 import { Link } from "react-router-dom"
-
+import { useState } from "react"
+import { IoIosArrowDown } from "react-icons/io"
 export default function CustomerPage() {
-  const { data: users, loading } = useUsers()
-
+  const [limit, setLimit] = useState<number>(5)
+  const { data: users, loading } = useUsers(limit)
   const renderElement = () => {
     return users?.map((user: UserType, index: number) => {
       return <tr key={index}>
@@ -41,6 +42,13 @@ export default function CustomerPage() {
           {!loading ? renderElement() : <TableProductSkaleton />}
         </tbody>
       </table>
+      <div className="flex justify-center py-3 gap-2 items-center">
+        <button onClick={() => {
+          setLimit(limit + 5)
+          console.log(limit)
+        }}>Lihat Lebih</button>
+        <IoIosArrowDown />
+      </div>
     </TableLayout>
   )
 }
